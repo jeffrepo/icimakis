@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
   <t t-name="icimakis.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
-
-      <xpath expr="//div[hasclass('pos-receipt-contact')]" position="after">
-        <div class="icimakis_extra">
-          <t t-if="receipt.partner">
-            <br/>
-            <t t-if="receipt.partner.name">
-                <div>Cliente: <t t-esc="receipt.partner.name"/></div>
-            </t>
-            <t t-if="receipt.partner.address">
-                <div>Dirección: <t t-esc="receipt.partner.address"/></div>
-            </t>
-          </t>
-        </div>
-      </xpath>
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="after">
+            <div class="icimakis_extra">
+              <t t-if="receipt.partner">
+                <br/>
+                <t t-if="receipt.partner.name">
+                    <div>Cliente: <t t-esc="receipt.partner.name"/></div>
+                </t>
+                <t t-if="receipt.partner.phone">
+                    <div>Teléfono: <t t-esc="receipt.partner.phone"/></div>
+                </t>              
+                <t t-if="receipt.partner.address">
+                    <div>Dirección: <t t-esc="receipt.partner.address"/></div>
+                </t>
+              </t>
+            </div>
+        </xpath>
+        
+        <xpath expr="//div[12]" position="replace">
+            <div class="pos-receipt-order-data">
+                <div style="font-size:150%"><t t-esc="receipt.name" /></div>
+                <t t-if="receipt.date.localestring">
+                    <div><t t-esc="receipt.date.localestring" /></div>
+                </t>
+                <t t-else="">
+                    <div><t t-esc="receipt.date.validation_date" /></div>
+                </t>
+            </div>
+        </xpath>   
+        
+        <xpath expr="//*[@class='pos-receipt']" position="attributes">
+            <attribute name="style">
+                position: relative;zoom: 90%;
+            </attribute>
+        </xpath>     
   </t>
 </templates>
