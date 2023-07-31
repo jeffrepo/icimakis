@@ -4,7 +4,7 @@
     'summary': """
         Ici Makis Extras""",
     'description': """
-       Ici Makis Extras
+       Ici Makis Extras pos
     """,
     'author': "ST",
     'website': "",
